@@ -172,14 +172,14 @@ h1 {
 
 .tabuleiro { flex: 1; min-height: 0; width: min(100%, 1100px); margin: 0 auto; display: flex; overflow: auto; padding: 4px; -webkit-overflow-scrolling: touch; }
 .grade {
-  margin: auto; display: grid;
-  grid-template-columns: repeat(var(--cols, 4), var(--cw, 90px));
+  margin: auto; display: flex; flex-wrap: wrap; justify-content: center;
+  width: calc(var(--cols, 4) * var(--cw, 90px) + (var(--cols, 4) - 1) * var(--gap, 10px));
   gap: var(--gap, 10px);
 }
 
 /* ---------- cartas ---------- */
 .carta {
-  position: relative; width: var(--cw); height: calc(var(--cw) * 4 / 3);
+  position: relative; flex: none; width: var(--cw); height: calc(var(--cw) * 4 / 3);
   padding: 0; border: 0; background: none; border-radius: 12px; color: inherit; font: inherit;
   cursor: pointer; perspective: 900px;
   animation: entrada .45s cubic-bezier(.2,.8,.3,1) backwards;
