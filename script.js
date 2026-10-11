@@ -232,7 +232,7 @@
     var W = tb.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
     var H = tb.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
     var gap = Math.max(6, Math.min(14, W / 38));
-    var minW = est.fase === 2 ? 104 : 70;      // menor carta que ainda dá para ler
+    var minW = est.fase === 2 ? 64 : 52;       // menor carta que ainda dá para ler
     var maxW = est.fase === 2 ? 210 : 190;
     var melhor = null;
     for (var c = 2; c <= Math.min(n, 8); c++) {
