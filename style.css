@@ -332,6 +332,12 @@ h1 {
   .fase-btn { margin-bottom: 9px; padding: 9px 14px; }
   .fase-num { width: 46px; height: 46px; font-size: 26px; line-height: 46px; }
 }
+@media (max-height: 760px) {
+  .stats { margin-top: 6px; }
+  .stats div { padding: 3px 8px; }
+  .stats b { font-size: 16px; }
+  .faixa { min-height: 2.4em; margin: 4px auto 2px; }
+}
 @media (max-height: 520px) {
   .stats { display: none; }
   .faixa { min-height: 2.4em; margin: 4px auto; }
