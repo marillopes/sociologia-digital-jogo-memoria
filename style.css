@@ -192,7 +192,7 @@ h1 {
 
 .carta-in {
   position: absolute; inset: 0; display: block;
-  transform-style: preserve-3d; transition: transform .5s cubic-bezier(.3,.7,.2,1);
+  -webkit-transform-style: preserve-3d; transform-style: preserve-3d; transition: transform .5s cubic-bezier(.3,.7,.2,1);
 }
 .carta.virada .carta-in { transform: rotateY(180deg); }
 
@@ -200,7 +200,8 @@ h1 {
   position: absolute; inset: 0; display: block; overflow: hidden; border-radius: 12px;
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
-.frente { transform: rotateY(180deg); }
+.frente { -webkit-transform: rotateY(180deg) translateZ(1px); transform: rotateY(180deg) translateZ(1px); }
+.costas { -webkit-transform: rotateY(0deg) translateZ(1px); transform: rotateY(0deg) translateZ(1px); }
 
 /* verso: azul com o SD amarelo */
 .costas {
@@ -220,7 +221,7 @@ h1 {
   background-size: 9px 9px;
   -webkit-mask-image: linear-gradient(160deg, #000, transparent 55%); mask-image: linear-gradient(160deg, #000, transparent 55%);
 }
-.costas img { position: relative; z-index: 1; width: 58%; height: auto; filter: drop-shadow(0 3px 0 rgba(8,8,61,.3)); }
+.costas img { position: relative; z-index: 1; width: 58%; height: auto; }
 
 /* frente: foto */
 .f-foto, .f-mulher { background: var(--noite); }
