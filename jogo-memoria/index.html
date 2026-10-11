@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1b1599">
+  <title>Mulheres na Ciência · Jogo da Memória · Sociologia Digital</title>
+  <meta name="description" content="Jogo da memória com dez mulheres que fizeram história na ciência. Projeto Sociologia Digital, CEFET/RJ.">
+  <link rel="icon" href="img/sd.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+
+  <main id="app">
+
+    <!-- ===================== MENU ===================== -->
+    <section id="tela-menu" class="tela ativa" aria-labelledby="titulo">
+      <div class="menu-in">
+        <img class="cefet" src="img/cefet.png" alt="CEFET/RJ">
+
+        <div class="marca">
+          <img class="marca-sd" src="img/sd.png" alt="">
+          <img class="marca-nome" src="img/sociologia-digital.png" alt="Sociologia Digital">
+        </div>
+
+        <h1 id="titulo">Mulheres<br>na Ciência</h1>
+        <p class="sub">Jogo da memória</p>
+
+        <div class="bloco">
+          <h2 class="rotulo">Escolha a fase</h2>
+          <button type="button" class="fase-btn" data-fase="1">
+            <span class="fase-num" aria-hidden="true">1</span>
+            <span class="fase-txt"><strong>Quem é ela?</strong><small>Combine a foto com o nome</small></span>
+          </button>
+          <button type="button" class="fase-btn" data-fase="2">
+            <span class="fase-num" aria-hidden="true">2</span>
+            <span class="fase-txt"><strong>O que ela fez?</strong><small>Combine a cientista com a sua contribuição</small></span>
+          </button>
+        </div>
+
+        <div class="bloco">
+          <h2 class="rotulo" id="rot-dif">Dificuldade</h2>
+          <div class="seg" id="seg-dif" role="group" aria-labelledby="rot-dif">
+            <button type="button" data-pares="4" aria-pressed="false"><b>Fácil</b><small>4 pares</small></button>
+            <button type="button" data-pares="6" aria-pressed="true"><b>Médio</b><small>6 pares</small></button>
+            <button type="button" data-pares="8" aria-pressed="false"><b>Difícil</b><small>8 pares</small></button>
+            <button type="button" data-pares="10" aria-pressed="false"><b>Todas</b><small>10 pares</small></button>
+          </div>
+        </div>
+
+        <div class="menu-rodape">
+          <button type="button" id="btn-como" class="link">Como jogar</button>
+          <p>Projeto Sociologia Digital · CEFET/RJ</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== JOGO ===================== -->
+    <section id="tela-jogo" class="tela" aria-label="Jogo da memória">
+      <header class="hud">
+        <button type="button" id="btn-menu" class="icone" aria-label="Voltar ao menu">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/></svg>
+        </button>
+        <div class="hud-titulo">
+          <span id="hud-fase">Fase 1</span>
+          <strong id="hud-sub">Quem é ela?</strong>
+        </div>
+        <button type="button" id="btn-som" class="icone" aria-pressed="true" aria-label="Som ligado">
+          <svg class="som-on" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <svg class="som-off" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 9l5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </button>
+      </header>
+
+      <div class="stats">
+        <div><span>Jogadas</span><b id="st-jogadas">0</b></div>
+        <div><span>Pares</span><b id="st-pares">0/6</b></div>
+        <div><span>Tempo</span><b id="st-tempo">0:00</b></div>
+      </div>
+
+      <p id="faixa" class="faixa" aria-live="polite">Toque numa carta para virar.</p>
+
+      <div id="tabuleiro" class="tabuleiro">
+        <div id="grade" class="grade" role="group" aria-label="Cartas do jogo"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FIM DE RODADA ===================== -->
+  <div id="modal-fim" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="fim-titulo">
+    <div class="modal-caixa">
+      <div id="confete" class="confete" aria-hidden="true"></div>
+      <p class="fim-fase" id="fim-fase">Fase 1 concluída</p>
+      <h2 id="fim-titulo">Parabéns!</h2>
+      <div class="estrelas" id="fim-estrelas" role="img" aria-label="3 de 3 estrelas">★★★</div>
+      <div class="fim-nums">
+        <div><b id="fim-jogadas">0</b><span>jogadas</span></div>
+        <div><b id="fim-tempo">0:00</b><span>tempo</span></div>
+      </div>
+      <p id="fim-recorde" class="recorde" hidden>Novo recorde nesta dificuldade!</p>
+      <h3 class="recap-titulo">Quem estava nesta rodada</h3>
+      <ul id="fim-lista" class="recap"></ul>
+      <div class="fim-botoes">
+        <button type="button" id="fim-prox" class="btn primario"></button>
+        <button type="button" id="fim-de-novo" class="btn sec"></button>
+        <button type="button" id="fim-menu" class="link">Voltar ao menu</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== COMO JOGAR ===================== -->
+  <div id="modal-como" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="como-titulo">
+    <div class="modal-caixa">
+      <h2 id="como-titulo">Como jogar</h2>
+      <ol class="como">
+        <li>Toque numa carta para virar. Vire duas por vez e tente formar um par.</li>
+        <li><b>Fase 1:</b> o par é a foto e o nome da cientista.</li>
+        <li><b>Fase 2:</b> o par é a cientista e o que ela fez.</li>
+        <li>Se não for par, as cartas viram de volta. Memorize onde cada uma está!</li>
+        <li>A cada rodada, as cientistas e as descrições são sorteadas de novo.</li>
+      </ol>
+      <button type="button" id="como-fechar" class="btn primario">Entendi</button>
+    </div>
+  </div>
+
+  <script src="dados.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
